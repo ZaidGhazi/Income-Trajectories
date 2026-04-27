@@ -47,3 +47,31 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# Portfolio housekeeping additions
+.DS_Store
+Thumbs.db
+
+# Local environment files
+.env
+.env.*
+!.env.example
+.Rprofile
+
+# Python and Jupyter files
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Caches and temporary files
+.cache/
+__cache__/
+tmp/
+temp/
+*.tmp
+*.bak
+*.log
+
+# Rendered intermediates
+*_files/
+.quarto/

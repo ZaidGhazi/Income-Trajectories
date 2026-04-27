@@ -26,7 +26,10 @@ library(splines)
 library(tibble)
 
 # 1) Read & clean -------------------------------------------------------
-df <- read_dta("/users/zghazi/Documents/6302/NLSY.dta") %>%
+nlsy_path <- Sys.getenv("NLSY_DTA", unset = "./data/NLSY.dta")
+model_cache_dir <- Sys.getenv("MODEL_CACHE_DIR", unset = ".")
+
+df <- read_dta(nlsy_path) %>%
   clean_names() %>%
   mutate(
     race     = as_factor(race),
@@ -269,7 +272,7 @@ mix_args <- list(max_iteration = 1000,
 
 #saveRDS(wm1, file = "wm1.rds")
 
-wm1 <- readRDS("wm1.rds")
+wm1 <- readRDS(file.path(model_cache_dir, "wm1.rds"))
 
 
 # 6.2) Model 2: + main effect of self_emp
@@ -282,7 +285,7 @@ wm1 <- readRDS("wm1.rds")
 
 #saveRDS(wm2, file = "wm2.rds")
 
-wm2 <- readRDS("wm2.rds")
+wm2 <- readRDS(file.path(model_cache_dir, "wm2.rds"))
 
 # 6.3) Model 3: + age × self_emp interaction
 #wm3 <- do.call(mix, c(
@@ -294,7 +297,7 @@ wm2 <- readRDS("wm2.rds")
 
 #saveRDS(wm3, file = "wm3.rds")
 
-wm3 <- readRDS("wm3.rds")
+wm3 <- readRDS(file.path(model_cache_dir, "wm3.rds"))
 
 # 6.4) Model 4: add AFQT, HGC, hours + random slope on age
 #wm4 <- do.call(mix, c(
@@ -308,7 +311,7 @@ wm3 <- readRDS("wm3.rds")
 
 #saveRDS(wm4, file = "wm4.rds")
 
-wm4 <- readRDS("wm4.rds")
+wm4 <- readRDS(file.path(model_cache_dir, "wm4.rds"))
 
 # 6.5) Model 5: add race, sex, cohort
 #wm5 <- do.call(mix, c(
@@ -323,7 +326,7 @@ wm4 <- readRDS("wm4.rds")
 
 #saveRDS(wm5, file = "wm5.rds")
 
-wm5 <- readRDS("wm5.rds")
+wm5 <- readRDS(file.path(model_cache_dir, "wm5.rds"))
 
 
 ```

@@ -1,0 +1,3 @@
+# Placeholder paths only. Copy this file to .Renviron and update locally.
+NLSY_DTA=./data/NLSY.dta
+MODEL_CACHE_DIR=./models
